@@ -3,6 +3,7 @@ import { Project } from "./Project";
 
 interface ProjectCardProps{
     project: Project;
+    onEdit: (project: Project) => void;
 }
 
 function formatDescription(description: string): string {
@@ -10,10 +11,10 @@ function formatDescription(description: string): string {
   }
 
 const ProjectCard = (props: ProjectCardProps) => {
-    const { project } = props;
+    const { project, onEdit } = props;
 
     const handleClick = (project: Project) => {
-        console.log(project)
+        onEdit(project);
     }
 
     return(

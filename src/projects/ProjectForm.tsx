@@ -1,8 +1,28 @@
-import React from "react";
+import React, { SyntheticEvent, useState } from "react";
+import Project from "./Project";
 
-const ProjectForm = () => {
+interface ProjectFormProps {
+    onSave: (project: Project) => void;
+    onCancel: () => void;
+    project: Project;
+}
+
+const ProjectForm = ({ onSave, onCancel, project: initialProject }: ProjectFormProps) => {
+    const [project, setProject] = useState(initialProject);
+
+    // const handleChange = (event: any) => {
+    //     const { type, name, value, check } = event.target;
+
+        
+    // } 
+
+    const handleSubmit = (event: SyntheticEvent) => {
+        event.preventDefault();
+        onSave(new Project({name: 'Updated project'}))
+    }
+
     return(
-        <form className="input-group vertical">
+        <form className="input-group vertical" onSubmit={handleSubmit}>
             <label htmlFor="name">Project Name</label>
             <input name="name" type="text" placeholder="enter project name"/>
             
@@ -18,7 +38,7 @@ const ProjectForm = () => {
             <div className="input-group">
                 <button className="primary bordered medium">Save</button>
                 <span/>
-                <button className="bordered medium">Cancel</button>
+                <button className="bordered medium" onClick={onCancel}>Cancel</button>
             </div>
         </form>
     )
