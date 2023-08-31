@@ -7,7 +7,7 @@ const ProjectsPage = () => {
   const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
   const saveProject = (project: Project) => {
     const updatedProjects = projects.map((x) =>
-      x.id === project.id ? project : x,
+      x.id === project.id ? project : x
     );
 
     setProjects(updatedProjects);
