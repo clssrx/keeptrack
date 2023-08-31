@@ -16,7 +16,7 @@ const ProjectForm = ({
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    onSave(new Project({ name: "Updated project" }));
+    onSave(project);
   };
 
   const handleChange = (event: any) => {
@@ -44,6 +44,7 @@ const ProjectForm = ({
         name="name"
         type="text"
         placeholder="enter project name"
+        value={project.name}
         onChange={handleChange}
       />
 
@@ -52,6 +53,7 @@ const ProjectForm = ({
         name="description"
         type="text"
         placeholder="enter project description"
+        value={project.description}
         onChange={handleChange}
       />
 
@@ -60,11 +62,17 @@ const ProjectForm = ({
         name="budget"
         type="text"
         placeholder="enter project budget"
+        value={project.budget}
         onChange={handleChange}
       />
 
       <label htmlFor="isActive">Active?</label>
-      <input name="isActive" type="checkbox" onChange={handleChange} />
+      <input
+        name="isActive"
+        type="checkbox"
+        checked={project.isActive}
+        onChange={handleChange}
+      />
 
       <div className="input-group">
         <button className="primary bordered medium">Save</button>
