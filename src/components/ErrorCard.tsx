@@ -2,7 +2,7 @@ import React from "react";
 
 interface ErrorCardType {
   errorMessage: string | undefined;
-  dimension?: 'large',
+  dimension?: "large";
 }
 
 const ErrorCard = ({ errorMessage, dimension }: ErrorCardType) => {

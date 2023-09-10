@@ -15,38 +15,36 @@ const ProjectForm = ({
 }: ProjectFormProps) => {
   const [project, setProject] = useState(initialProject);
   const [errors, setErrors] = useState({
-    name: '',
-    description: '',
-    budget: '',
+    name: "",
+    description: "",
+    budget: "",
   });
 
   const validate = (project: Project) => {
-    let errors: any = { name: '', description: '', budget: '' };
+    let errors: any = { name: "", description: "", budget: "" };
 
-    if(project.name.length === 0)
-      errors.name = 'Name is required';
-    if(project.name.length > 0 && project.name.length < 3)
-      errors.name = 'Name lenght too short! Min 3 characters';
-    if(project.description.length === 0)
-      errors.description = 'Description is required';
-    if(project.budget <= 0)
-      errors.budget = 'Budget can not be zero o negative!!!';
+    if (project.name.length === 0) errors.name = "Name is required";
+    if (project.name.length > 0 && project.name.length < 3)
+      errors.name = "Name lenght too short! Min 3 characters";
+    if (project.description.length === 0)
+      errors.description = "Description is required";
+    if (project.budget <= 0)
+      errors.budget = "Budget can not be zero o negative!!!";
 
     return errors;
-  }
+  };
 
   const isValid = () => {
-    return(
+    return (
       errors.name.length === 0 &&
       errors.description.length === 0 &&
       errors.budget.length === 0
-    )
-  }
+    );
+  };
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    if(!isValid())
-      return;
+    if (!isValid()) return;
     onSave(project);
   };
 
@@ -67,7 +65,7 @@ const ProjectForm = ({
       return updatedProject;
     });
 
-    setErrors(() => validate(updatedProject))
+    setErrors(() => validate(updatedProject));
   };
 
   return (
@@ -80,11 +78,11 @@ const ProjectForm = ({
         value={project.name}
         onChange={handleChange}
       />
-      {errors.name.length > 0 &&  
+      {errors.name.length > 0 && (
         <div className="card error">
           <p>{errors.name}</p>
         </div>
-      }
+      )}
 
       <label htmlFor="description">Project Description</label>
       <input
@@ -94,11 +92,11 @@ const ProjectForm = ({
         value={project.description}
         onChange={handleChange}
       />
-      {errors.description.length > 0 &&  
+      {errors.description.length > 0 && (
         <div className="card error">
           <p>{errors.description}</p>
         </div>
-      }
+      )}
 
       <label htmlFor="budget">Project Budget</label>
       <input
@@ -108,11 +106,11 @@ const ProjectForm = ({
         value={project.budget}
         onChange={handleChange}
       />
-      {errors.budget.length > 0 &&  
+      {errors.budget.length > 0 && (
         <div className="card error">
           <p>{errors.budget}</p>
         </div>
-      }
+      )}
 
       <label htmlFor="isActive">Active?</label>
       <input
