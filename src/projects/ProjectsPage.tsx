@@ -34,19 +34,17 @@ const ProjectsPage = () => {
   }, [currentPage]);
 
   const saveProject = (project: Project) => {
-   
-
-    ProjectAPI
-      .put(project)
+    ProjectAPI.put(project)
       .then((updatedProject) => {
-        let updatedProjects = projects.map((p: Project) => p.id === project.id ? new Project(updatedProject) : p)
+        let updatedProjects = projects.map((p: Project) =>
+          p.id === project.id ? new Project(updatedProject) : p
+        );
 
         setProjects(updatedProjects);
       })
-      .catch(error => {
-        if(error instanceof Error)
-          setError(error.message)
-      })
+      .catch((error) => {
+        if (error instanceof Error) setError(error.message);
+      });
   };
 
   return (
